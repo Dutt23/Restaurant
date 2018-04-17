@@ -67,11 +67,13 @@ public class RestaurantServiceLayerTest {
 	 * 
 	 * @throws MovieAlreadyExistsException
 	 */
+	
 	@Test
+	
 	public void testAddRestaurantSuccess() throws Exception{
 		Mockito.when(restaurantRepo.save(restaurant)).thenReturn(restaurant);
-		final boolean flag = restaurantServiceImpl.addRestaurant(restaurant);
-		assertTrue("saving movie failed , the call to movieDAOImpl is returning false ,check this method", flag);
+		final Restaurant flag = restaurantServiceImpl.addRestaurant(restaurant);
+		assertNotNull( flag);
 		verify(restaurantRepo, times(1)).save(restaurant);
 		
    
@@ -89,12 +91,11 @@ public class RestaurantServiceLayerTest {
 	@Test
 	public void testUpdateRestaurantByIdSuccess() throws Exception{
 		int id = 1;
-		Restaurant restaurant1 = new Restaurant(1, "POC", "dubai", "www.abc.com");
-		
-		Mockito.when(restaurantRepo.save(restaurant)).thenReturn(restaurant);
+		Restaurant restaurant1 = new Restaurant(4, "POC", "dubai", "www.abc.com");
+		Mockito.when(restaurantRepo.save(restaurant1)).thenReturn(restaurant1);
 		restaurant.setId(id);
-		final boolean flag = restaurantServiceImpl.updateRestaurantById(restaurant1);
-		assertTrue("saving movie failed , the call to movieDAOImpl is returning false ,check this method", flag);
+		final Restaurant flag = restaurantServiceImpl.updateRestaurantById(restaurant1);
+		assertEquals(flag.getId(),restaurant1.getId());
 		verify(restaurantRepo, times(1)).save(restaurant1);
 		
    

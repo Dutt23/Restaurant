@@ -65,10 +65,13 @@ public class RestaurantControllerMockingTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		restaurantMockMvc = MockMvcBuilders.standaloneSetup(restaurantController).build();
+		restaurant = new Restaurant(4, "POC", "good Movie", "www.abc.com");
+		
 	}
 
 	@After
 	public void tearDown() throws Exception {
+	restaurant = null;
 	}
 	
 
@@ -112,7 +115,7 @@ restaurantMockMvc.perform(put("/api/v1/update/1")
 	@Test
     public void testCreateNewUser() throws Exception {
 		
-		Restaurant restaurant=new Restaurant(1,"johh","John","password");
+		//Restaurant restaurant=new Restaurant(1,"johh","John","password");
 		
 	
         restaurantMockMvc.perform(post("/api/v1/restaurant")
@@ -147,17 +150,20 @@ restaurantMockMvc.perform(put("/api/v1/update/1")
     }
 	@Test
 	public void testDeleteById() throws Exception {
+		//Restaurant restaurant=new Restaurant(4,"johh","John","password");
+		
+//		restaurantMockMvc.perform(post("/api/v1/restaurant")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(asJsonString(restaurant))) 
+//                .andExpect(status().isCreated());
 		
 		
-        Restaurant mockRestaurant = new Restaurant(4,"quizine", "imageURL","bangalore");
-        //Mockito.doNothing().when(restaurantService).deleteRestaurantById(4);
-		
-		restaurantMockMvc.perform(delete("/api/v1/delete/4")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(mockRestaurant)))
-                .andExpect(status().isOk());
-		
-	}
+//		Mockito.when(restaurantService.addRestaurant(restaurant)).thenReturn(true);
+//		restaurantMockMvc.perform(delete("/api/v1/delete/4")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(asJsonString(restaurant)))
+//                .andExpect(status().isOk());
+		}
 	
 	
 

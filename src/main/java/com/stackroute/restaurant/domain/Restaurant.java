@@ -1,6 +1,5 @@
-package com.stackroute.restaurant.domain;
+ package com.stackroute.restaurant.domain;
 
-import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Restaurant {
 	
     @Id
-	private int id;
+    private int id;
 	private String name;
 	private String image;
 	private String location;
@@ -21,13 +20,15 @@ public class Restaurant {
 	}
 	
 	public Restaurant(int id , String name , String image , String location)
-	{
+	{   
+		
 		this.id = id;
 		this.name = name;
 		this.image = image;
 		this.location = location;
 		
 	}
+	
 	public int getId() {
 		return id;
 	}

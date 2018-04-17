@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.stackroute.restaurant.domain.Restaurant;
 import com.stackroute.restaurant.exceptions.DataBaseNotAvailableException;
+import com.stackroute.restaurant.exceptions.InvalidInputException;
 import com.stackroute.restaurant.repositories.RestaurantRepository;
 
 @Service
@@ -23,10 +24,14 @@ public class RestaurantServiceMySQLImpl implements RestaurantService {
 	}
 
 	@Override
-	public Boolean addRestaurant(Restaurant restaurant) throws DataBaseNotAvailableException{
+	public Restaurant addRestaurant(Restaurant restaurant) throws DataBaseNotAvailableException, InvalidInputException{
+		if(restaurantRepository.findById(restaurant.getId()).orElse(null) != null)
+		{
+			throw new InvalidInputException("Id already exists");
+		}
 		try {
-			restaurantRepository.save(restaurant);
-			return true;
+			Restaurant restaurant1 = restaurantRepository.save(restaurant);
+			return restaurant1;
 		} 
 		catch (Exception e) {
 			
@@ -56,9 +61,9 @@ public class RestaurantServiceMySQLImpl implements RestaurantService {
 	}
 	
 	@Override
-	public Boolean updateRestaurantById(Restaurant restaurant) {
-		restaurantRepository.save(restaurant);
-		return true;
+	public Restaurant updateRestaurantById(Restaurant restaurant) {
+		restaurant = restaurantRepository.save(restaurant);
+		return restaurant;
 	}
 
 	@Override

@@ -89,7 +89,7 @@ public class MovieControllerIntegrationTest {
 		
 		assertNotNull(response);
 		String actual = response.getBody();
-		assertNull(actual);
+		assertEquals("Restaurant deleted", actual);
 		assertEquals(200, response.getStatusCodeValue());
 
 	}
@@ -127,7 +127,7 @@ public class MovieControllerIntegrationTest {
 		
 		assertNotNull(response);
 		String actual = response.getBody();
-		assertNull(actual);
+		assertNotNull(actual);
 		assertEquals(200, response.getStatusCodeValue());
 		assertEquals("img",restaurant.getImage());
 
